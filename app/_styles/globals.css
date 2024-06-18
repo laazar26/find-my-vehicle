@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Form Gradient Border */
+
+.gradient-border {
+  position: relative;
+  padding: 2px; /* Adjust based on desired border width */
+  background: linear-gradient(
+    to right,
+    #79cef2 0%,
+    rgba(36, 36, 36, 0.4) 47%,
+    rgba(36, 36, 36, 0.4) 53%,
+    #5dffff 100%
+  );
+  border-radius: 12px; /* Adjust based on desired border radius */
+}
+
+.gradient-border > .inner-content {
+  border-radius: 10px; /* Slightly smaller than outer border radius */
+  /* background-color: white; */
+  padding: 2rem; /* Adjust based on desired inner padding */
+}
+
+/* :root {
+  --shadow-color: rgba(59, 130, 246, 0.5);
+  .shadow-custom-blue {
+    --tw-shadow: 0 4px 6px -1px var(--shadow-color),
+      0 2px 4px -1px var(--shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+      var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  }
+} */
+
+@layer components {
+  .spinner {
+    margin: 3.2rem auto 1.6rem;
+    width: 60px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 8px solid theme("colors.primary.900");
+    border-right-color: theme("colors.primary.200");
+    animation: rotate 1s infinite linear;
+  }
+
+  .spinner-mini {
+    margin: 0;
+    width: 20px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 2px solid theme("colors.primary.200");
+    border-right-color: transparent;
+    animation: rotate 1s infinite linear;
+  }
+
+  @keyframes rotate {
+    to {
+      transform: rotate(1turn);
+    }
+  }
+}
