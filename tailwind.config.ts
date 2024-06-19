@@ -37,6 +37,9 @@ module.exports = {
 
         customBg: "#101012",
       },
+      boxShadow: {
+        "subtle-white": "0 0 25px 0px rgba(255, 255, 255, 0.15)",
+      },
     },
   },
   plugins: [],

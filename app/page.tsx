@@ -1,6 +1,7 @@
 import Image from "next/image";
 import logo from "@/public/logo.webp";
 import mouse from "@/public/mouse.png";
+import CarDetailsForm from "./_components/CarDetailsForm";
 import CarForm from "./_components/CarForm";
 
 export default function Home() {
@@ -30,6 +31,7 @@ export default function Home() {
       </div>
 
       <CarForm />
+      {/* <CarDetailsForm /> */}
     </>
   );
 }
