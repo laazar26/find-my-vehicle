@@ -4,6 +4,8 @@ import mouse from "@/public/mouse.png";
 import CarDetailsForm from "./_components/CarDetailsForm";
 import CarForm from "./_components/CarForm";
 
+console.log("log", process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
+
 export default function Home() {
   return (
     <>
