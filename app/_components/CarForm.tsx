@@ -1,35 +1,29 @@
 "use client";
 
-import { useState } from "react";
-import { uloadCarProblem } from "../_lib/actions";
+import { FormEvent } from "react";
+import { useUser } from "../context/UserContext";
 
-interface CarProblemData {
-  problemDescription: string;
-  diagnosticsInfo: string;
-  warningLights: string;
-}
+function CarForm() {
+  const { setCarProblemData } = useUser();
 
-function CarIsueForm() {
-  const [problemDescription, setProblemDescription] = useState("");
-  const [diagnosticsInfo, setDiagnosticsInfo] = useState("");
-  const [warningLights, setWarningLights] = useState("");
-
-  function handleSubmit(e: React.FormEvent) {
+  function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    const carProblem: CarProblemData = {
-      problemDescription,
-      diagnosticsInfo,
-      warningLights,
+    const formData = new FormData(e.target as HTMLFormElement);
+    const carProblem = Object.fromEntries(formData.entries()) as {
+      problemDescription: string | number;
+      diagnosticsInfo: string | number;
+      warningLights: string | number;
     };
 
-    uloadCarProblem(carProblem);
-    console.log(problemDescription, diagnosticsInfo, warningLights);
+    setCarProblemData(carProblem);
+
+    console.log("Form submitted:", carProblem);
   }
 
   return (
     <div className="border mt-32 border-[#5dffff] rounded-3xl px-14 py-24 max-w-screen-lg mx-auto shadow-subtle-white">
-      <form className="" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <div>
           <label
             htmlFor="problemDescription"
@@ -40,8 +34,6 @@ function CarIsueForm() {
           <textarea
             id="problemDescription"
             name="problemDescription"
-            value={problemDescription}
-            onChange={(e) => setProblemDescription(e.target.value)}
             placeholder="Ovde detaljno opisi sa kakvim se problemom suocavas. Posto nemam priliku ( za sada ) da pogledam, cujem, prockackam, potrudi se da sto bolje docaras sta se desava."
             className="mt-1 text-black font-semibold mb-5 block w-full p-2.5 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             rows={4}
@@ -58,8 +50,6 @@ function CarIsueForm() {
           <textarea
             id="diagnosticsInfo"
             name="diagnosticsInfo"
-            value={diagnosticsInfo}
-            onChange={(e) => setDiagnosticsInfo(e.target.value)}
             placeholder="Ako je ucitavana dijagnostika, sta je pisalo."
             className="mt-1 text-black font-semibold mb-5 block w-full p-2.5 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             rows={4}
@@ -76,8 +66,6 @@ function CarIsueForm() {
           <textarea
             id="warningLights"
             name="warningLights"
-            value={warningLights}
-            onChange={(e) => setWarningLights(e.target.value)}
             placeholder="Ako gori neka lampica, napisite koja ili ako ne znate kako se zove opisite je kako izgleda."
             className="mt-1 text-black font-semibold mb-5 block w-full p-2.5 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             rows={4}
@@ -97,5 +85,4 @@ function CarIsueForm() {
   );
 }
 
-export default CarIsueForm;
-``;
+export default CarForm;

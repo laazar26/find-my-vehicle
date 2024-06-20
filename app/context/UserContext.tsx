@@ -9,21 +9,32 @@ import {
 } from "react";
 import { v4 as uuidv4 } from "uuid";
 
-type userContextType = {
-  userId: string | null;
-  setUserId: (id: string) => void;
+type CarProblemData = {
+  problemDescription: string | number;
+  diagnosticsInfo: string | number;
+  warningLights: string | number;
 };
 
-const UserContext = createContext<userContextType | undefined>(undefined);
+type UserContextType = {
+  userId: string | null;
+  setUserId: (id: string) => void;
+  carProblemData: CarProblemData | null;
+  setCarProblemData: (data: CarProblemData) => void;
+};
 
-type UserProvider = {
+const UserContext = createContext<UserContextType | undefined>(undefined);
+
+type UserProviderProps = {
   children: ReactNode;
 };
 
-function UserProvider({ children }: UserProvider) {
+function UserProvider({ children }: UserProviderProps) {
   const [userId, setUserId] = useState<string | null>(null);
+  const [carProblemData, setCarProblemData] = useState<CarProblemData | null>(
+    null
+  );
 
-  useEffect(function () {
+  useEffect(() => {
     let id = localStorage.getItem("user_id");
     if (!id) {
       id = uuidv4();
@@ -33,16 +44,18 @@ function UserProvider({ children }: UserProvider) {
   }, []);
 
   return (
-    <UserContext.Provider value={{ userId, setUserId }}>
+    <UserContext.Provider
+      value={{ userId, setUserId, carProblemData, setCarProblemData }}
+    >
       {children}
     </UserContext.Provider>
   );
 }
 
-function useUser(): userContextType {
+function useUser(): UserContextType {
   const context = useContext(UserContext);
   if (context === undefined)
-    throw new Error("UseUser must be used within a UserProvider");
+    throw new Error("useUser must be used within a UserProvider");
   return context;
 }
 

@@ -14,7 +14,7 @@ function Navigation() {
         </li>
         <li>
           <Link
-            className="transition-all  rounded-full bg-primary-50 text-black px-7 py-2 border border-primary-50 hover:bg-transparent hover:border-transparent hover:text-primary-50"
+            className="transition-all  rounded-full bg-white text-black px-7 py-2 border border-white hover:bg-transparent hover:border-transparent hover:text-primary-50"
             href="/register"
           >
             Register
