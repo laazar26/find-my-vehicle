@@ -1,21 +1,31 @@
 "use client";
 
 import { useState } from "react";
+import { uloadCarProblem } from "../_lib/actions";
+
+interface CarProblemData {
+  problemDescription: string;
+  diagnosticsInfo: string;
+  warningLights: string;
+}
 
 function CarIsueForm() {
   const [problemDescription, setProblemDescription] = useState("");
   const [diagnosticsInfo, setDiagnosticsInfo] = useState("");
   const [warningLights, setWarningLights] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    // Handle form submission logic
-    console.log({
+
+    const carProblem: CarProblemData = {
       problemDescription,
       diagnosticsInfo,
       warningLights,
-    });
-  };
+    };
+
+    uloadCarProblem(carProblem);
+    console.log(problemDescription, diagnosticsInfo, warningLights);
+  }
 
   return (
     <div className="border mt-32 border-[#5dffff] rounded-3xl px-14 py-24 max-w-screen-lg mx-auto shadow-subtle-white">

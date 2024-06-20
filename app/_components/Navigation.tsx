@@ -7,7 +7,7 @@ function Navigation() {
         <li>
           <Link
             className="rounded-full px-7 py-2 border border-primary-50 border-opacity-20 hover:bg-primary-50 hover:border-transparent transition-all hover:text-black"
-            href=""
+            href="/login"
           >
             Login
           </Link>
@@ -15,7 +15,7 @@ function Navigation() {
         <li>
           <Link
             className="transition-all  rounded-full bg-primary-50 text-black px-7 py-2 border border-primary-50 hover:bg-transparent hover:border-transparent hover:text-primary-50"
-            href=""
+            href="/register"
           >
             Register
           </Link>
