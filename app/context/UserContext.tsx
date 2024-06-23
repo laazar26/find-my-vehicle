@@ -18,8 +18,6 @@ type CarProblemData = {
 type UserContextType = {
   userId: string | null;
   setUserId: (id: string) => void;
-  carProblemData: CarProblemData | null;
-  setCarProblemData: (data: CarProblemData) => void;
 };
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
@@ -30,9 +28,6 @@ type UserProviderProps = {
 
 function UserProvider({ children }: UserProviderProps) {
   const [userId, setUserId] = useState<string | null>(null);
-  const [carProblemData, setCarProblemData] = useState<CarProblemData | null>(
-    null
-  );
 
   useEffect(() => {
     let id = localStorage.getItem("user_id");
@@ -44,9 +39,7 @@ function UserProvider({ children }: UserProviderProps) {
   }, []);
 
   return (
-    <UserContext.Provider
-      value={{ userId, setUserId, carProblemData, setCarProblemData }}
-    >
+    <UserContext.Provider value={{ userId, setUserId }}>
       {children}
     </UserContext.Provider>
   );

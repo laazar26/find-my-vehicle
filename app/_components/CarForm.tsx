@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { uploadCarProblem } from "@/app/_lib/actions"; // Ensure this is the correct path to your insertCarProblemData file
 import { useUser } from "@/app/context/UserContext"; // Ensure this is the correct path to your UserProvider
+import { v4 as uuidv4 } from "uuid";
+import { uploadCarProblem } from "@/app/_lib/actions"; // Ensure this is the correct path to your actions file
 
 function CarForm() {
   const [problemDescription, setProblemDescription] = useState("");
@@ -13,13 +14,29 @@ function CarForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    const carDetailId = uuidv4();
+    console.log(userId);
+
+    if (!userId) {
+      console.error("No user ID found.");
+      return;
+    }
+
     const data = {
+      id: carDetailId,
       detailed_description: problemDescription,
       diagnostics_info: diagnosticsInfo,
       warning_lights: warningLights,
     };
 
-    await uploadCarProblem(data, userId);
+    const result = await uploadCarProblem(data, userId);
+
+    if (result.error) {
+      console.error("Error inserting data: ", result.error.message);
+    } else {
+      console.log("Data inserted successfully");
+      // Optionally reset the form or provide user feedback here
+    }
   };
 
   return (
