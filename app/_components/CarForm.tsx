@@ -1,25 +1,26 @@
 "use client";
 
-import { FormEvent } from "react";
-import { useUser } from "../context/UserContext";
+import { useState } from "react";
+import { uploadCarProblem } from "@/app/_lib/actions"; // Ensure this is the correct path to your insertCarProblemData file
+import { useUser } from "@/app/context/UserContext"; // Ensure this is the correct path to your UserProvider
 
 function CarForm() {
-  const { setCarProblemData } = useUser();
+  const [problemDescription, setProblemDescription] = useState("");
+  const [diagnosticsInfo, setDiagnosticsInfo] = useState("");
+  const [warningLights, setWarningLights] = useState("");
+  const { userId } = useUser();
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const formData = new FormData(e.target as HTMLFormElement);
-    const carProblem = Object.fromEntries(formData.entries()) as {
-      problemDescription: string | number;
-      diagnosticsInfo: string | number;
-      warningLights: string | number;
+    const data = {
+      detailed_description: problemDescription,
+      diagnostics_info: diagnosticsInfo,
+      warning_lights: warningLights,
     };
 
-    setCarProblemData(carProblem);
-
-    console.log("Form submitted:", carProblem);
-  }
+    await uploadCarProblem(data, userId);
+  };
 
   return (
     <div className="border mt-32 border-[#5dffff] rounded-3xl px-14 py-24 max-w-screen-lg mx-auto shadow-subtle-white">
@@ -37,6 +38,8 @@ function CarForm() {
             placeholder="Ovde detaljno opisi sa kakvim se problemom suocavas. Posto nemam priliku ( za sada ) da pogledam, cujem, prockackam, potrudi se da sto bolje docaras sta se desava."
             className="mt-1 text-black font-semibold mb-5 block w-full p-2.5 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             rows={4}
+            value={problemDescription}
+            onChange={(e) => setProblemDescription(e.target.value)}
           />
         </div>
 
@@ -53,6 +56,8 @@ function CarForm() {
             placeholder="Ako je ucitavana dijagnostika, sta je pisalo."
             className="mt-1 text-black font-semibold mb-5 block w-full p-2.5 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             rows={4}
+            value={diagnosticsInfo}
+            onChange={(e) => setDiagnosticsInfo(e.target.value)}
           />
         </div>
 
@@ -69,6 +74,8 @@ function CarForm() {
             placeholder="Ako gori neka lampica, napisite koja ili ako ne znate kako se zove opisite je kako izgleda."
             className="mt-1 text-black font-semibold mb-5 block w-full p-2.5 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             rows={4}
+            value={warningLights}
+            onChange={(e) => setWarningLights(e.target.value)}
           />
         </div>
 

@@ -26,7 +26,7 @@ export default function RootLayout({
       <body
         className={`${inter.className} bg-customBg antialiased text-slate-50`}
       >
-        <div className="">
+        <div>
           <Header />
           <UserProvider>
             <main className="max-w-7xl mx-auto">{children}</main>
