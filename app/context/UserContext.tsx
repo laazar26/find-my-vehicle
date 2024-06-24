@@ -9,12 +9,6 @@ import {
 } from "react";
 import { v4 as uuidv4 } from "uuid";
 
-type CarProblemData = {
-  problemDescription: string | number;
-  diagnosticsInfo: string | number;
-  warningLights: string | number;
-};
-
 type UserContextType = {
   userId: string | null;
   setUserId: (id: string) => void;
