@@ -9,9 +9,21 @@ import {
 } from "react";
 import { v4 as uuidv4 } from "uuid";
 
+interface CarProp {
+  brand: any;
+  engineSize: any;
+  fuel: any;
+  model: any;
+  power: any;
+  transmission: string;
+  year: any;
+}
+
 type UserContextType = {
   userId: string | null;
   setUserId: (id: string) => void;
+  car: CarProp;
+  setCar: (car: CarProp) => void;
 };
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
@@ -22,6 +34,7 @@ type UserProviderProps = {
 
 function UserProvider({ children }: UserProviderProps) {
   const [userId, setUserId] = useState<string | null>(null);
+  const [car, setCar] = useState<any>({});
 
   useEffect(() => {
     let id = localStorage.getItem("user_id");
@@ -33,7 +46,7 @@ function UserProvider({ children }: UserProviderProps) {
   }, []);
 
   return (
-    <UserContext.Provider value={{ userId, setUserId }}>
+    <UserContext.Provider value={{ userId, setUserId, car, setCar }}>
       {children}
     </UserContext.Provider>
   );

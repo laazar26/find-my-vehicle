@@ -1,17 +1,11 @@
-import CarDetailsForm from "./_components/CarDetailsForm";
-import CarForm from "./_components/CarForm";
 import HeroSection from "./_components/HeroSection";
-import { uploadCarProblem } from "@/app/_lib/actions";
+import MainForm from "./_components/MainForm";
 
-export default async function Home() {
-  await uploadCarProblem(undefined, undefined);
-
+export default function Home() {
   return (
     <>
       <HeroSection />
-      <CarForm />
-
-      {/* <CarDetailsForm /> */}
+      <MainForm />
     </>
   );
 }

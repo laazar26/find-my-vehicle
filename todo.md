@@ -1,0 +1,1 @@
+## napraviti u use context da se skladiste podaci od forme i kad se obe tabele popune tek ce onda da posalje sve te podatke u supabase tabelu i onda ce da se executuje funkcije za dalje slanje ka ChatGPT API

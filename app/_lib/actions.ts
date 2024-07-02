@@ -1,11 +1,17 @@
-import { supabase } from "@/app/_lib/supabase"; // Ensure this is the correct path to your Supabase file
+import { supabase } from "@/app/_lib/supabase";
 import toast from "react-hot-toast";
 
-interface CarProblemData {
-  // id: string;
-  detailed_description: string;
-  diagnostics_info: string;
-  warning_lights: string;
+interface UpdateCarProblemData {
+  detailed_description?: string;
+  diagnostics_info?: string;
+  warning_lights?: string;
+  brand?: string;
+  model?: string;
+  year?: string;
+  fuel?: string;
+  engine_size?: string;
+  power?: string;
+  transmission?: string;
 }
 
 export async function uploadCarProblem(data: CarProblemData, userId: string) {
@@ -29,19 +35,6 @@ export async function uploadCarProblem(data: CarProblemData, userId: string) {
   }
 
   return { insertData, error: null };
-}
-
-interface UpdateCarProblemData {
-  detailed_description?: string;
-  diagnostics_info?: string;
-  warning_lights?: string;
-  brand?: string;
-  model?: string;
-  year?: string;
-  fuel?: string;
-  engine_size?: string;
-  power?: string;
-  transmission?: string;
 }
 
 export async function updateCarProblem(
@@ -100,4 +93,17 @@ export async function checkQuestionsLeft(userId: string): Promise<void> {
   } catch (err) {
     console.error("Error in checkQuestionsLeft:", err);
   }
+}
+
+interface formDataProps {
+  // id: string;
+  detailed_description: string;
+  diagnostics_info: string;
+  warning_lights: string;
+  itemID: string;
+}
+
+export async function getInfo(prevState: any, formData: formDataProps) {
+  console.log("prevState", prevState);
+  console.log("formData", formData);
 }
