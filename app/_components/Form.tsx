@@ -1,13 +1,21 @@
 "use client";
 
-import { useFormState } from "react-dom";
+import { getInfo } from "../_lib/actions";
 import SubmitButton from "./SubmitButton";
 
 function Form() {
-  const [state, action] = useFormState();
+  // const [state, action] = useFormState();
+  const userID = "Lazar";
+  console.log("🚀 ~ Form ~ Lazar:", Lazar);
 
   return (
-    <form action={() => console.log("run")} className="flex">
+    <form
+      onSubmit={() => {
+        console.log("sda");
+        getInfo(userID);
+      }}
+      className="flex"
+    >
       <label>Sto detaljniji opis problema?</label>
       <input
         name="problemDescription"

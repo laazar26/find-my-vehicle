@@ -103,7 +103,7 @@ interface formDataProps {
   itemID: string;
 }
 
-export async function getInfo(prevState: any, formData: formDataProps) {
-  console.log("prevState", prevState);
-  console.log("formData", formData);
+export function getInfo(userId) {
+  console.log("run...");
+  console.log(userId);
 }
