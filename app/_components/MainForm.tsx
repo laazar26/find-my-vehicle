@@ -1,11 +1,11 @@
-"use client";
-
-import DetailsForm from "./DetailsForm";
 import Form from "./Form";
 
 function MainForm() {
-  return <DetailsForm />;
-  // <Form />;
+  return (
+    <>
+      <Form />
+    </>
+  );
 }
 
 export default MainForm;

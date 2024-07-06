@@ -103,7 +103,11 @@ interface formDataProps {
   itemID: string;
 }
 
-export function getInfo(userId) {
-  console.log("run...");
-  console.log(userId);
+export async function getInfo(state: any, formData: FormData) {
+  const data = {
+    problem: formData.get("problemDescription"),
+    diagnostic: formData.get("diagnosticsInfo"),
+    warningLight: formData.get("warningLights"),
+  };
+  console.log(data);
 }
