@@ -1,22 +1,8 @@
 "use client";
 
+import { carBrands, fuelTypes, years, powerValues } from "@/app/_lib/data/data";
 import { useFormState } from "react-dom";
 import { getFormData } from "../_lib/actions";
-
-const carBrands = [
-  "VW",
-  "BMW",
-  "Audi",
-  "Mercedes-Benz",
-  "Toyota",
-  "Honda",
-  "Ford",
-  "Chevrolet",
-  "Nissan",
-  "Hyundai",
-  "Kia",
-  "Mazda",
-] as const;
 
 function Form() {
   const [state, formAction] = useFormState(getFormData, null);
@@ -49,6 +35,9 @@ function Form() {
           name="brand"
           className="mt-1 text-black font-semibold mb-5 block h-14 w-full p-2.5 border border-gray-300 rounded-md shadow-sm"
         >
+          <option value="" disabled>
+            Odaberite marku
+          </option>
           {carBrands.map((brand) => (
             <option key={brand} value={brand}>
               {brand}
@@ -76,11 +65,19 @@ function Form() {
         >
           Godište
         </label>
-        <input
+        <select
           name="year"
-          placeholder="Primer: 2015"
-          className="mt-1 h-14 mb-5 block w-full p-2.5 border border-gray-300 rounded-md text-black font-semibold shadow-sm"
-        />
+          className="mt-1 text-black font-semibold mb-5 block h-14 w-full p-2.5 border border-gray-300 rounded-md shadow-sm"
+        >
+          <option value="" disabled>
+            Odaberite godište
+          </option>
+          {[...years].reverse().map((year) => (
+            <option key={year} value={year}>
+              {year} god.
+            </option>
+          ))}
+        </select>
       </div>
       <div>
         <label
@@ -89,11 +86,19 @@ function Form() {
         >
           Gorivo
         </label>
-        <input
+        <select
           name="fuel"
-          placeholder="Primer: Diesel"
           className="mt-1 h-14 text-black font-semibold block w-full p-2.5 border border-gray-300 rounded-md shadow-sm mb-5"
-        />
+        >
+          <option value="" disabled>
+            Odaberite gorivo
+          </option>
+          {fuelTypes.map((fuel) => (
+            <option key={fuel} value={fuel}>
+              {fuel}
+            </option>
+          ))}
+        </select>
       </div>
       <div>
         <label
@@ -115,11 +120,19 @@ function Form() {
         >
           Snaga (kw)
         </label>
-        <input
+        <select
           name="power"
-          placeholder="Primer: 150"
           className="mt-1 h-14 block text-black font-semibold w-full p-2.5 border border-gray-300 rounded-md mb-5 shadow-sm"
-        />
+        >
+          <option value="" disabled>
+            Odaberite snagu
+          </option>
+          {powerValues.map((power) => (
+            <option key={power} value={power}>
+              {power}
+            </option>
+          ))}
+        </select>
       </div>
       <div>
         <label
