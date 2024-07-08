@@ -1,5 +1,6 @@
 import { supabase } from "@/app/_lib/supabase";
 import toast from "react-hot-toast";
+import { formSchema } from "./schemas/formSchema";
 
 interface UpdateCarProblemData {
   detailed_description?: string;
@@ -103,11 +104,19 @@ interface formDataProps {
   itemID: string;
 }
 
-export async function getInfo(state: any, formData: FormData) {
-  const data = {
-    problem: formData.get("problemDescription"),
-    diagnostic: formData.get("diagnosticsInfo"),
-    warningLight: formData.get("warningLights"),
-  };
-  console.log(data);
+export async function getFormData(state: any, formData: FormData) {
+  const validationData = formSchema.safeParse({
+    problemDescription: formData.get("problemDescription"),
+    diagnosticsInfo: formData.get("diagnosticsInfo"),
+    warningLights: formData.get("warningLights"),
+    brand: formData.get("brand"),
+    model: formData.get("model"),
+    year: formData.get("year"),
+    fuel: formData.get("fuel"),
+    engineSize: formData.get("engineSize"),
+    power: formData.get("power"),
+    transmission: formData.get("transmission"),
+  });
+
+  console.log(validationData);
 }
