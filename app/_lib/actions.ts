@@ -2,6 +2,55 @@ import { supabase } from "@/app/_lib/supabase";
 import toast from "react-hot-toast";
 import { formSchema } from "./schemas/formSchema";
 
+export async function getFormData(state: any, formData: FormData) {
+  const parsedData = formSchema.safeParse({
+    problem_desc: formData.get("problemDescription"),
+    diagnostics_info: formData.get("diagnosticsInfo"),
+    warning_lights: formData.get("warningLights"),
+    brand: formData.get("brand"),
+    model: formData.get("model"),
+    year: formData.get("year"),
+    fuel: formData.get("fuel"),
+    engine_size: formData.get("engineSize"),
+    power: formData.get("power"),
+    transmission: formData.get("transmission"),
+  });
+
+  if (!parsedData.success) {
+    console.error("Validation Error:", parsedData.error);
+    toast.error("Form validation failed. Please check your inputs.");
+    return;
+  }
+
+  console.log("Uploading....");
+  console.log(parsedData);
+
+  const { data, error } = await supabase
+    .from("car_details")
+    .insert([parsedData.data])
+    .select();
+
+  if (error) {
+    console.error("Supabase Error:", error);
+    toast.error("Data upload failed. Please try again.");
+  } else {
+    toast.success("Data uploaded successfully!");
+  }
+
+  return { data, error };
+}
+
+// export async function uploadData(data: any) {}
+
+/*
+interface formDataProps {
+  // id: string;
+  detailed_description: string;
+  diagnostics_info: string;
+  warning_lights: string;
+  itemID: string;
+}
+
 interface UpdateCarProblemData {
   detailed_description?: string;
   diagnostics_info?: string;
@@ -95,28 +144,4 @@ export async function checkQuestionsLeft(userId: string): Promise<void> {
     console.error("Error in checkQuestionsLeft:", err);
   }
 }
-
-interface formDataProps {
-  // id: string;
-  detailed_description: string;
-  diagnostics_info: string;
-  warning_lights: string;
-  itemID: string;
-}
-
-export async function getFormData(state: any, formData: FormData) {
-  const validationData = formSchema.safeParse({
-    problemDescription: formData.get("problemDescription"),
-    diagnosticsInfo: formData.get("diagnosticsInfo"),
-    warningLights: formData.get("warningLights"),
-    brand: formData.get("brand"),
-    model: formData.get("model"),
-    year: formData.get("year"),
-    fuel: formData.get("fuel"),
-    engineSize: formData.get("engineSize"),
-    power: formData.get("power"),
-    transmission: formData.get("transmission"),
-  });
-
-  console.log(validationData);
-}
+*/
