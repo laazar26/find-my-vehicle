@@ -1,3 +1,4 @@
+/*
 import { supabase } from "@/app/_lib/supabase"; // Ensure this is the correct path to your Supabase file
 import toast from "react-hot-toast";
 
@@ -101,3 +102,4 @@ export async function checkQuestionsLeft(userId: string): Promise<void> {
     console.error("Error in checkQuestionsLeft:", err);
   }
 }
+*/
