@@ -5,6 +5,7 @@ import "@/app/_styles/globals.css";
 import Header from "./_components/Header";
 
 import { UserProvider } from "./context/UserContext";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,6 +32,7 @@ export default function RootLayout({
           <UserProvider>
             <main className="max-w-7xl mx-auto">{children}</main>
           </UserProvider>
+          <Toaster />
         </div>
       </body>
     </html>
