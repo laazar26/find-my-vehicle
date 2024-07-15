@@ -1,12 +1,75 @@
+<<<<<<< HEAD
 /*
 import { supabase } from "@/app/_lib/supabase"; // Ensure this is the correct path to your Supabase file
 import toast from "react-hot-toast";
 
 interface CarProblemData {
+=======
+import { supabase } from "@/app/_lib/supabase";
+import toast from "react-hot-toast";
+import { formSchema } from "./schemas/formSchema";
+
+export async function getFormData(state: any, formData: FormData) {
+  const parsedData = formSchema.safeParse({
+    problem_desc: formData.get("problemDescription"),
+    diagnostics_info: formData.get("diagnosticsInfo"),
+    warning_lights: formData.get("warningLights"),
+    brand: formData.get("brand"),
+    model: formData.get("model"),
+    year: formData.get("year"),
+    fuel: formData.get("fuel"),
+    engine_size: formData.get("engineSize"),
+    power: formData.get("power"),
+    transmission: formData.get("transmission"),
+  });
+
+  if (!parsedData.success) {
+    console.error("Validation Error:", parsedData.error);
+    toast.error("Form validation failed. Please check your inputs.");
+    return;
+  }
+
+  console.log("Uploading....");
+  console.log(parsedData);
+
+  const { data, error } = await supabase
+    .from("car_details")
+    .insert([parsedData.data])
+    .select();
+
+  if (error) {
+    console.error("Supabase Error:", error);
+    toast.error("Data upload failed. Please try again.");
+  } else {
+    toast.success("Data uploaded successfully!");
+  }
+
+  return { data, error };
+}
+
+// export async function uploadData(data: any) {}
+
+/*
+interface formDataProps {
+>>>>>>> aa290d2ce565d85a1a5173b12cb643a6976b21fe
   // id: string;
   detailed_description: string;
   diagnostics_info: string;
   warning_lights: string;
+  itemID: string;
+}
+
+interface UpdateCarProblemData {
+  detailed_description?: string;
+  diagnostics_info?: string;
+  warning_lights?: string;
+  brand?: string;
+  model?: string;
+  year?: string;
+  fuel?: string;
+  engine_size?: string;
+  power?: string;
+  transmission?: string;
 }
 
 export async function uploadCarProblem(data: CarProblemData, userId: string) {
@@ -32,6 +95,7 @@ export async function uploadCarProblem(data: CarProblemData, userId: string) {
   return { insertData, error: null };
 }
 
+<<<<<<< HEAD
 interface UpdateCarProblemData {
   detailed_description?: string;
   diagnostics_info?: string;
@@ -45,6 +109,8 @@ interface UpdateCarProblemData {
   transmission?: string;
 }
 
+=======
+>>>>>>> aa290d2ce565d85a1a5173b12cb643a6976b21fe
 export async function updateCarProblem(
   data: UpdateCarProblemData,
   userId: string
