@@ -26,6 +26,14 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
+.env
+
+# Drizzle ORM
+# /drizzle/
+app/drizzle/migrations/
+
+
+# local env files
 .env*.local
 
 # vercel
