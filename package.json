@@ -13,16 +13,28 @@
     "studio": "drizzle-kit studio"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.43.5",
+    "@supabase/supabase-js": "^2.44.3",
     "@types/uuid": "^9.0.8",
     "dotenv": "^16.4.5",
     "next": "14.2.4",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 6f47a11e4002bd0d0cde8dc88b83a5831b0858e7
     "pg": "^8.12.0",
     "postgres": "^3.4.4",
     "react": "^18",
     "react-dom": "^18",
     "react-hot-toast": "^2.4.1",
     "uuid": "^10.0.0"
+=======
+    "next-auth": "^5.0.0-beta.19",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-hot-toast": "^2.4.1",
+    "uuid": "^10.0.0",
+    "zod": "^3.23.8"
+>>>>>>> aa290d2ce565d85a1a5173b12cb643a6976b21fe
   },
   "devDependencies": {
     "@types/node": "^20",

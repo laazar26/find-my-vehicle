@@ -1,5 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+todo.md
+
 # dependencies
 /node_modules
 /.pnp
@@ -29,8 +31,13 @@ yarn-error.log*
 .env
 
 # Drizzle ORM
+<<<<<<< HEAD
 # /drizzle/
 app/drizzle/migrations/
+=======
+/drizzle/
+/drizzle/migrations/
+>>>>>>> 6f47a11e4002bd0d0cde8dc88b83a5831b0858e7
 
 
 # local env files

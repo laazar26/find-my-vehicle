@@ -12,12 +12,10 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: {
     template: "Saveta",
-    default: "Welcome | Saveta",
+    default: "Saveta | Repair Vehicle",
   },
   description: "Saveta will help you to repair your vehicle",
 };
-
-console.log("layout");
 
 export default function RootLayout({
   children,
