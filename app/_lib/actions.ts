@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /*
 import { supabase } from "@/app/_lib/supabase"; // Ensure this is the correct path to your Supabase file
 import toast from "react-hot-toast";
@@ -51,7 +50,6 @@ export async function getFormData(state: any, formData: FormData) {
 
 /*
 interface formDataProps {
->>>>>>> aa290d2ce565d85a1a5173b12cb643a6976b21fe
   // id: string;
   detailed_description: string;
   diagnostics_info: string;
@@ -95,7 +93,6 @@ export async function uploadCarProblem(data: CarProblemData, userId: string) {
   return { insertData, error: null };
 }
 
-<<<<<<< HEAD
 interface UpdateCarProblemData {
   detailed_description?: string;
   diagnostics_info?: string;
@@ -109,8 +106,6 @@ interface UpdateCarProblemData {
   transmission?: string;
 }
 
-=======
->>>>>>> aa290d2ce565d85a1a5173b12cb643a6976b21fe
 export async function updateCarProblem(
   data: UpdateCarProblemData,
   userId: string

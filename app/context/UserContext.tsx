@@ -9,8 +9,6 @@ import {
 } from "react";
 import { v4 as uuidv4 } from "uuid";
 
-<<<<<<< HEAD
-=======
 interface CarProp {
   brand: any;
   engineSize: any;
@@ -21,7 +19,6 @@ interface CarProp {
   year: any;
 }
 
->>>>>>> aa290d2ce565d85a1a5173b12cb643a6976b21fe
 type UserContextType = {
   userId: string | null;
   setUserId: (id: string) => void;

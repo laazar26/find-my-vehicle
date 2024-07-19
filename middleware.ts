@@ -1,12 +1,9 @@
 import { auth } from "@/app/_lib/auth";
 import { NextRequest } from "next/server";
-export const middleware = auth();
+// export const nextAuth = auth();
 
-export async function get(req: NextRequest) {
-  console.log("Geting...");
-  console.log(req);
-}
+// export function middleware(req: NextRequest) {}
 
-export const config = {
-  matcher: ["/account"],
-};
+// export const config = {
+//   matcher: ["/account"],
+// };
