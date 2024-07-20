@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { auth } from "../_lib/auth";
 import Image from "next/image";
+import { signIn } from "next-auth/react";
 
 async function Navigation() {
   const session = await auth();
@@ -20,17 +21,17 @@ async function Navigation() {
               referrerPolicy="no-referrer"
             />
           ) : (
-            <Link
-              className="transition-all  rounded bg-white text-black px-7 py-2 border border-white hover:bg-transparent hover:border-transparent hover:text-primary-50"
-              href="/register"
+            <button
+              className="transition-all rounded bg-white text-black px-7 py-2 border border-white hover:bg-transparent hover:border-transparent hover:text-primary-50"
             >
               Sign in
-            </Link>
+            </button> 
           )}
         </li>
       </ul>
     </nav>
   );
 }
-
+  
+  
 export default Navigation;

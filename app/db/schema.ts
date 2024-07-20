@@ -1,4 +1,4 @@
-import { pgTable, serial, varchar, text, integer } from "drizzle-orm/pg-core";
+import { pgTable, serial, varchar, text, integer, uuid, unique } from "drizzle-orm/pg-core";
 
 export const vehicleProblems = pgTable("vehicle_problems", {
   id: serial("id").primaryKey(),
@@ -15,3 +15,11 @@ export const vehicleProblems = pgTable("vehicle_problems", {
 });
 
 export type VehicleProblems = typeof vehicleProblems.$inferSelect;
+
+export const users = pgTable('users', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  email: text('email').unique(),
+  name: text('name'),
+})
+
+export type user = typeof users.$inferSelect

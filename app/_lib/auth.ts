@@ -13,10 +13,15 @@ const authConfig = {
       console.log(auth, request);
       return !!auth?.user;
     },
+    async signIn() {
+      
+    }
   },
 };
 
 export const {
+  signIn,
+  signOut,
   auth,
   handlers: { GET, POST },
 } = NextAuth(authConfig);

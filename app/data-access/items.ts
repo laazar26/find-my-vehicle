@@ -1,6 +1,7 @@
 import { db } from "@/app/db/index";
 import { vehicleProblems } from "@/app/db/schema";
 import { formSchema } from "@/app/_lib/schemas/formSchema";
+import { eq } from "drizzle-orm";
 
 export async function getFormData(state: any, formData: FormData) {
   const parsedData = formSchema.safeParse({
@@ -23,4 +24,13 @@ export async function getFormData(state: any, formData: FormData) {
 
   console.log("Uploading....");
   console.log(parsedData.data);
+}
+export async function getUser(email: string) {
+  const user = await db.select().from(users).where(eq(users.email, email)).limit(1)
+
+  return user
+}
+
+export async function createUser(user: typeof users.$inferSelect) {
+  return await db.insert(users).values(user)
 }
