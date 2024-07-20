@@ -1,5 +1,5 @@
 import { db } from "@/app/db/index";
-import { vehicleProblems } from "@/app/db/schema";
+import { users, vehicleProblems } from "@/app/db/schema";
 import { formSchema } from "@/app/_lib/schemas/formSchema";
 import { eq } from "drizzle-orm";
 
